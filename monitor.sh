@@ -5,7 +5,7 @@ BASE="https://raw.githubusercontent.com/osamahamad/payout-targets-data/main"
 STATE="state"
 mkdir -p "$STATE"
 
-# Filtr platform. Puste = wszystko.
+# Filtr. Puste = wszystko.
 # PLATFORM_FILTER="hackerone|intigriti|bugcrowd"
 PLATFORM_FILTER=""
 
@@ -20,10 +20,9 @@ send() {
 
 send_chunked() {
   local chat="$1" header="$2" file="$3"
-  local total
+  local total msg count=0
   total=$(wc -l < "$file")
-  local msg="${header} (${total})"$'\n\n'
-  local count=0
+  msg="${header} (${total})"$'\n\n'
 
   while IFS= read -r line; do
     msg+="${line}"$'\n'
@@ -39,19 +38,23 @@ send_chunked() {
   [ -n "$msg" ] && send "$chat" "$msg"
 }
 
+# Diff pelnego scope. Zrodlo prawdy = assets.out, nie cudza delta.
 process() {
   local name="$1" url="$2" chat="$3" header="$4"
   local new="$STATE/${name}.new"
   local old="$STATE/${name}.txt"
   local diff="$STATE/${name}.diff"
 
-  if ! curl -sf --max-time 60 "$url" -o "$new"; then
+  if ! curl -sf --max-time 120 "$url" -o "$new"; then
     echo "[!] fetch failed: $name"
     return 0
   fi
 
-  if [ ! -s "$new" ]; then
-    echo "[!] empty response: $name"
+  # assets.out ma tysiace linii. Kilkanascie = upstream zepsuty.
+  local lines
+  lines=$(wc -l < "$new")
+  if [ "$lines" -lt 100 ]; then
+    echo "[!] suspicious size: $name ($lines lines) - skipping"
     rm -f "$new"
     return 0
   fi
@@ -82,5 +85,5 @@ process() {
   rm -f "$diff"
 }
 
-process "assets"    "${BASE}/new_added_assets.out"    "$TG_ASSETS"   "NOWE ASSETY / SCOPE UPDATE"
-process "wildcards" "${BASE}/new_added_wildcards.out" "$TG_PROGRAMS" "NOWE WILDCARDY"
+process "assets"    "${BASE}/assets.out"    "$TG_ASSETS"   "NOWE ASSETY / SCOPE UPDATE"
+process "wildcards" "${BASE}/wildcards.out" "$TG_PROGRAMS" "NOWE WILDCARDY"
