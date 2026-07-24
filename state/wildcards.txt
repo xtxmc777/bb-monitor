@@ -913,7 +913,6 @@
 *.slotomania.com
 *.smartcontract.com
 *.smartline.com.au
-*.snapshooter.com
 *.snooguts.net
 *.sol-data.com
 *.solarcity.com
