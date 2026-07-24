@@ -1,89 +1,315 @@
 #!/usr/bin/env bash
-set -uo pipefail
 
-BASE="https://raw.githubusercontent.com/osamahamad/payout-targets-data/main"
-STATE="state"
-mkdir -p "$STATE"
+set -euo pipefail
 
-# Filtr. Puste = wszystko.
-# PLATFORM_FILTER="hackerone|intigriti|bugcrowd"
-PLATFORM_FILTER=""
+export LC_ALL=C
 
-send() {
-  local chat="$1" text="$2"
-  curl -s -X POST \
-    "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
-    -d "chat_id=${chat}" \
-    -d "disable_web_page_preview=true" \
-    --data-urlencode "text=${text}" > /dev/null
+BASE="${BB_MONITOR_BASE:-https://raw.githubusercontent.com/osamahamad/payout-targets-data/main}"
+STATE="${BB_MONITOR_STATE:-state}"
+DRY_RUN="${BB_MONITOR_DRY_RUN:-0}"
+MAX_INLINE="${BB_MONITOR_MAX_INLINE:-20}"
+MIN_LINES="${BB_MONITOR_MIN_LINES:-100}"
+PLATFORM_FILTER="${PLATFORM_FILTER:-}"
+
+mkdir -p "$STATE/sent"
+
+if [[ "$DRY_RUN" == "1" ]]; then
+  TG_ASSETS="${TG_ASSETS:-dry-run-assets}"
+  TG_PROGRAMS="${TG_PROGRAMS:-dry-run-programs}"
+else
+  : "${TELEGRAM_TOKEN:?Missing TELEGRAM_TOKEN}"
+  : "${TG_ASSETS:?Missing TG_ASSETS}"
+  : "${TG_PROGRAMS:?Missing TG_PROGRAMS}"
+fi
+
+
+telegram_response_ok() {
+  TELEGRAM_RESPONSE="$1" python3 - <<'PY'
+import json
+import os
+import sys
+
+try:
+    response = json.loads(os.environ["TELEGRAM_RESPONSE"])
+except json.JSONDecodeError:
+    print("[!] Telegram returned invalid JSON", file=sys.stderr)
+    raise SystemExit(1)
+
+if response.get("ok") is not True:
+    print(
+        "[!] Telegram error: "
+        + str(response.get("description", "unknown error")),
+        file=sys.stderr,
+    )
+    raise SystemExit(1)
+PY
 }
 
-send_chunked() {
-  local chat="$1" header="$2" file="$3"
-  local total msg count=0
-  total=$(wc -l < "$file")
-  msg="${header} (${total})"$'\n\n'
 
-  while IFS= read -r line; do
-    msg+="${line}"$'\n'
-    count=$((count + 1))
-    if [ "$count" -ge 25 ]; then
-      send "$chat" "$msg"
-      msg=""
-      count=0
-      sleep 1
-    fi
-  done < "$file"
+send_message() {
+  local chat="$1"
+  local text="$2"
 
-  [ -n "$msg" ] && send "$chat" "$msg"
-}
-
-# Diff pelnego scope. Zrodlo prawdy = assets.out, nie cudza delta.
-process() {
-  local name="$1" url="$2" chat="$3" header="$4"
-  local new="$STATE/${name}.new"
-  local old="$STATE/${name}.txt"
-  local diff="$STATE/${name}.diff"
-
-  if ! curl -sf --max-time 120 "$url" -o "$new"; then
-    echo "[!] fetch failed: $name"
+  if [[ "$DRY_RUN" == "1" ]]; then
+    echo "[DRY-RUN] sendMessage chat=$chat"
+    printf '%s\n' "$text"
     return 0
   fi
 
-  # assets.out ma tysiace linii. Kilkanascie = upstream zepsuty.
-  local lines
-  lines=$(wc -l < "$new")
-  if [ "$lines" -lt 100 ]; then
-    echo "[!] suspicious size: $name ($lines lines) - skipping"
-    rm -f "$new"
+  local response
+
+  if ! response="$(
+    curl \
+      -sS \
+      --fail-with-body \
+      --retry 3 \
+      --retry-delay 2 \
+      --retry-all-errors \
+      --connect-timeout 15 \
+      --max-time 60 \
+      -X POST \
+      "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+      -d "chat_id=${chat}" \
+      -d "disable_web_page_preview=true" \
+      --data-urlencode "text=${text}"
+  )"; then
+    echo "[!] Telegram sendMessage failed" >&2
+    return 1
+  fi
+
+  telegram_response_ok "$response"
+}
+
+
+send_document() {
+  local chat="$1"
+  local caption="$2"
+  local file="$3"
+
+  if [[ "$DRY_RUN" == "1" ]]; then
+    echo "[DRY-RUN] sendDocument chat=$chat file=$file"
+    printf '%s\n' "$caption"
     return 0
+  fi
+
+  local response
+
+  if ! response="$(
+    curl \
+      -sS \
+      --fail-with-body \
+      --retry 3 \
+      --retry-delay 2 \
+      --retry-all-errors \
+      --connect-timeout 15 \
+      --max-time 120 \
+      -X POST \
+      "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument" \
+      -F "chat_id=${chat}" \
+      -F "document=@${file};type=text/plain" \
+      -F "caption=${caption}"
+  )"; then
+    echo "[!] Telegram sendDocument failed" >&2
+    return 1
+  fi
+
+  telegram_response_ok "$response"
+}
+
+
+filter_file() {
+  local file="$1"
+
+  if [[ -z "$PLATFORM_FILTER" ]]; then
+    return 0
+  fi
+
+  grep -Ei "$PLATFORM_FILTER" "$file" > "${file}.filtered" || true
+  mv "${file}.filtered" "$file"
+}
+
+
+notify_change() {
+  local name="$1"
+  local change="$2"
+  local file="$3"
+  local chat="$4"
+  local dataset="$5"
+  local old_sha="$6"
+  local new_sha="$7"
+
+  local count
+  count="$(wc -l < "$file")"
+
+  [[ "$count" -gt 0 ]] || return 0
+
+  local marker_material
+  marker_material="${name}|${change}|${old_sha}|${new_sha}"
+
+  local marker_hash
+  marker_hash="$(
+    printf '%s' "$marker_material" |
+      sha256sum |
+      awk '{print $1}'
+  )"
+
+  local marker="$STATE/sent/${name}-${marker_hash}.sent"
+
+  if [[ -f "$marker" ]]; then
+    echo "[-] already notified: $name $change"
+    return 0
+  fi
+
+  local title
+
+  case "$change" in
+    added)
+      title="SCOPE DELTA — ADDED"
+      ;;
+    removed)
+      title="SCOPE DELTA — REMOVED"
+      ;;
+    *)
+      echo "[!] unknown change type: $change" >&2
+      return 1
+      ;;
+  esac
+
+  local summary
+  summary="${title}"$'\n\n'
+  summary+="Dataset: ${dataset}"$'\n'
+  summary+="Count: ${count}"$'\n'
+  summary+="Scope status: PENDING VERIFICATION"$'\n'
+  summary+="Recon: BLOCKED"
+
+  local message
+  message="${summary}"$'\n\n'"$(cat "$file")"
+
+  if [[ "$count" -le "$MAX_INLINE" && "${#message}" -le 3800 ]]; then
+    if ! send_message "$chat" "$message"; then
+      return 1
+    fi
+  else
+    if ! send_document \
+      "$chat" \
+      "${summary}"$'\n\n'"Full list attached." \
+      "$file"
+    then
+      return 1
+    fi
+  fi
+
+  touch "$marker"
+  echo "[+] notified: $name $change ($count)"
+}
+
+
+process_dataset() {
+  local name="$1"
+  local url="$2"
+  local chat="$3"
+  local dataset="$4"
+
+  local new="$STATE/${name}.new"
+  local old="$STATE/${name}.txt"
+  local added="$STATE/${name}.added.txt"
+  local removed="$STATE/${name}.removed.txt"
+
+  if ! curl \
+    -sSf \
+    --retry 3 \
+    --retry-delay 2 \
+    --retry-all-errors \
+    --connect-timeout 15 \
+    --max-time 120 \
+    "$url" \
+    -o "$new"
+  then
+    echo "[!] fetch failed: $name" >&2
+    return 1
   fi
 
   sort -u "$new" -o "$new"
 
-  if [ ! -f "$old" ]; then
+  local lines
+  lines="$(wc -l < "$new")"
+
+  if [[ "$lines" -lt "$MIN_LINES" ]]; then
+    echo "[!] suspicious size: $name ($lines lines)" >&2
+    rm -f "$new"
+    return 1
+  fi
+
+  if [[ ! -f "$old" ]]; then
     mv "$new" "$old"
-    echo "[+] baseline created: $name ($(wc -l < "$old") lines)"
+    echo "[+] baseline created: $name ($lines lines)"
     return 0
   fi
 
-  comm -13 "$old" "$new" > "$diff"
+  sort -u "$old" -o "$old"
 
-  if [ -n "$PLATFORM_FILTER" ]; then
-    grep -Ei "$PLATFORM_FILTER" "$diff" > "${diff}.f" || true
-    mv "${diff}.f" "$diff"
-  fi
+  comm -13 "$old" "$new" > "$added"
+  comm -23 "$old" "$new" > "$removed"
 
-  if [ -s "$diff" ]; then
-    echo "[+] $name: $(wc -l < "$diff") new"
-    send_chunked "$chat" "$header" "$diff"
-  else
-    echo "[-] $name: no changes"
+  filter_file "$added"
+  filter_file "$removed"
+
+  local added_count removed_count
+  added_count="$(wc -l < "$added")"
+  removed_count="$(wc -l < "$removed")"
+
+  echo "[+] $name: added=$added_count removed=$removed_count"
+
+  local old_sha new_sha
+  old_sha="$(sha256sum "$old" | awk '{print $1}')"
+  new_sha="$(sha256sum "$new" | awk '{print $1}')"
+
+  local failed=0
+
+  notify_change \
+    "$name" \
+    "added" \
+    "$added" \
+    "$chat" \
+    "$dataset" \
+    "$old_sha" \
+    "$new_sha" || failed=1
+
+  notify_change \
+    "$name" \
+    "removed" \
+    "$removed" \
+    "$chat" \
+    "$dataset" \
+    "$old_sha" \
+    "$new_sha" || failed=1
+
+  if [[ "$failed" -ne 0 ]]; then
+    rm -f "$new" "$added" "$removed"
+    echo "[!] notification incomplete: $name" >&2
+    return 1
   fi
 
   mv "$new" "$old"
-  rm -f "$diff"
+  rm -f "$added" "$removed"
+  rm -f "$STATE/sent/${name}-"*.sent
+
+  echo "[+] baseline advanced: $name"
 }
 
-process "assets"    "${BASE}/assets.out"    "$TG_ASSETS"   "NOWE ASSETY / SCOPE UPDATE"
-process "wildcards" "${BASE}/wildcards.out" "$TG_PROGRAMS" "NOWE WILDCARDY"
+
+status=0
+
+process_dataset \
+  "assets" \
+  "${BASE}/assets.out" \
+  "$TG_ASSETS" \
+  "assets.out" || status=1
+
+process_dataset \
+  "wildcards" \
+  "${BASE}/wildcards.out" \
+  "$TG_PROGRAMS" \
+  "wildcards.out" || status=1
+
+exit "$status"
