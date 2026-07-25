@@ -312,6 +312,8 @@ def changed_details(old: dict, new: dict) -> dict:
         "id": new["id"],
         "name": new["name"],
         "url": new["url"],
+        "bounty": new["bounty"],
+        "domains": new["domains"],
         "fields": fields,
         "old_bounty": old["bounty"],
         "new_bounty": new["bounty"],
@@ -562,11 +564,18 @@ def onboarding_event(
     if candidate is None:
         return None
 
-    trigger = (
-        "program_reopened_possible"
-        if kind == "possible_reopened"
-        else "program_added"
-    )
+    triggers = {
+        "added": "program_added",
+        "possible_reopened": "program_reopened_possible",
+        "changed": "program_domains_changed",
+    }
+
+    try:
+        trigger = triggers[kind]
+    except KeyError:
+        raise SystemExit(
+            "BLOCKED: unsupported onboarding event kind"
+        )
 
     event_id = hashlib.sha256(
         (
@@ -578,6 +587,8 @@ def onboarding_event(
     return {
         "event_version": 1,
         "event_id": event_id,
+        "onboarding_key": record["id"],
+        "program_url": record["url"],
         "event_type": "source_onboarding_candidate",
         "trigger": trigger,
         "status": "pending",
@@ -710,8 +721,15 @@ def execute(
             for kind in (
                 "added",
                 "possible_reopened",
+                "changed",
             ):
                 for record in changes[kind]:
+                    if (
+                        kind == "changed"
+                        and "domains" not in record["fields"]
+                    ):
+                        continue
+
                     event = onboarding_event(
                         kind,
                         record,

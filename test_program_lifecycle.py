@@ -169,6 +169,33 @@ def main() -> None:
 
         assert changed["counts"]["changed"] == 1
         assert changed["notifications_created"] == 1
+        assert changed["events_created"] == 1
+
+        changed_events = [
+            json.loads(
+                path.read_text(encoding="utf-8")
+            )
+            for path in files(events, "*.json")
+        ]
+
+        domain_change_events = [
+            item
+            for item in changed_events
+            if item["trigger"]
+            == "program_domains_changed"
+        ]
+
+        assert len(domain_change_events) == 1
+        assert (
+            domain_change_events[0]["candidate_host"]
+            == "new-vendor.example"
+        )
+        assert (
+            domain_change_events[0]["onboarding_key"]
+            == MODULE.normalize_program(
+                added_record
+            )["id"]
+        )
 
         for path in files(state / "outbox", "*.json"):
             path.unlink()
@@ -255,9 +282,42 @@ def main() -> None:
             state / "current.json"
         ).read_bytes() == before_current
 
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary)
+        state = root / "state"
+        events = root / "events"
+
+        baseline_catalog = catalog()
+
+        MODULE.execute(
+            baseline_catalog,
+            state,
+            events,
+            "2026-07-25T02:00:00Z",
+        )
+
+        renamed_catalog = copy.deepcopy(
+            baseline_catalog
+        )
+        renamed_catalog["programs"][0]["name"] = (
+            "Renamed Fixture"
+        )
+
+        renamed = MODULE.execute(
+            renamed_catalog,
+            state,
+            events,
+            "2026-07-25T02:10:00Z",
+        )
+
+        assert renamed["counts"]["changed"] == 1
+        assert renamed["events_created"] == 0
+
     print("baseline_notifications=ZERO")
     print("program_added=DETECTED")
     print("program_changed=DETECTED")
+    print("domain_change_onboarding=CREATED")
+    print("name_only_change_onboarding=SKIPPED")
     print("program_removed=DETECTED")
     print("possible_reopened=DETECTED")
     print("onboarding_events=CREATED")
