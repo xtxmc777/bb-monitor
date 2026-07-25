@@ -1,5 +1,4 @@
 {
-  "catalog_sha256": "c1f33ccf1745674167aa916556d77584154e8e8a6c246b8d184abd298f0f95aa",
   "changed": false,
   "counts": {
     "added": 0,
@@ -8,8 +7,10 @@
     "removed": 0
   },
   "events_created": 0,
+  "new_sha256": "c1f33ccf1745674167aa916556d77584154e8e8a6c246b8d184abd298f0f95aa",
   "notifications_created": 0,
+  "old_sha256": "c1f33ccf1745674167aa916556d77584154e8e8a6c246b8d184abd298f0f95aa",
   "program_count": 802,
   "program_lifecycle_result_version": 1,
-  "status": "baseline_created"
+  "status": "no_change"
 }
