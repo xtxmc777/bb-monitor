@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "bb-monitor"
           git config user.email "actions@github.com"
-          git add --all -- state/assets.txt state/wildcards.txt state/sent/
+          git add --all -- state/assets.txt state/wildcards.txt state/sent/ state/events/
           git diff --staged --quiet || git commit -m "state update $(date -u +%F_%H:%M)"
           git push

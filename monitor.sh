@@ -264,6 +264,16 @@ process_dataset() {
   old_sha="$(sha256sum "$old" | awk '{print $1}')"
   new_sha="$(sha256sum "$new" | awk '{print $1}')"
 
+  # SOURCE_INTELLIGENCE_ONBOARDING_EVENTS_V1
+  if [[ "$name" == "wildcards" && "$added_count" -gt 0 ]]; then
+    python3 "$(dirname "$0")/emit_onboarding_events.py" \
+      --input "$added" \
+      --state "$STATE" \
+      --dataset "$dataset" \
+      --old-sha "$old_sha" \
+      --new-sha "$new_sha"
+  fi
+
   local failed=0
 
   notify_change \
