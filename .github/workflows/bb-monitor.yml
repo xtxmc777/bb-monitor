@@ -31,6 +31,10 @@ jobs:
         run: |
           git config user.name "bb-monitor"
           git config user.email "actions@github.com"
-          git add --all -- state/assets.txt state/wildcards.txt state/sent/ state/events/
+          paths=(state/assets.txt state/wildcards.txt state/sent/)
+          if [[ -d state/events ]]; then
+            paths+=(state/events/)
+          fi
+          git add --all -- "${paths[@]}"
           git diff --staged --quiet || git commit -m "state update $(date -u +%F_%H:%M)"
           git push
