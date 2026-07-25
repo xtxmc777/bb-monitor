@@ -129,6 +129,47 @@ filter_file() {
 }
 
 
+send_inline_list() {
+  local chat="$1"
+  local summary="$2"
+  local file="$3"
+
+  local part=1
+  local chunk="${summary}"$'\n\n'
+  local line candidate
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    candidate="${chunk}${line}"$'\n'
+
+    if [[ "${#candidate}" -gt 3800 ]]; then
+      if [[ "$chunk" == "${summary}"$'\n\n' ]]; then
+        echo "[!] scope entry exceeds Telegram inline limit" >&2
+        return 1
+      fi
+
+      if ! send_message "$chat" "${chunk%$'\n'}"; then
+        return 1
+      fi
+
+      part=$((part + 1))
+      chunk="${summary}"$'\n'"Part: ${part}"$'\n\n'"${line}"$'\n'
+
+      if [[ "${#chunk}" -gt 3800 ]]; then
+        echo "[!] scope entry exceeds Telegram inline limit" >&2
+        return 1
+      fi
+    else
+      chunk="$candidate"
+    fi
+  done < "$file"
+
+  if [[ "$chunk" != "${summary}"$'\n\n' ]]; then
+    if ! send_message "$chat" "${chunk%$'\n'}"; then
+      return 1
+    fi
+  fi
+}
+
 notify_change() {
   local name="$1"
   local change="$2"
@@ -182,21 +223,12 @@ notify_change() {
   summary+="Scope status: PENDING VERIFICATION"$'\n'
   summary+="Recon: BLOCKED"
 
-  local message
-  message="${summary}"$'\n\n'"$(cat "$file")"
-
-  if [[ "$count" -le "$MAX_INLINE" && "${#message}" -le 3800 ]]; then
-    if ! send_message "$chat" "$message"; then
-      return 1
-    fi
-  else
-    if ! send_document \
-      "$chat" \
-      "${summary}"$'\n\n'"Full list attached." \
-      "$file"
-    then
-      return 1
-    fi
+  if ! send_inline_list \
+    "$chat" \
+    "$summary" \
+    "$file"
+  then
+    return 1
   fi
 
   touch "$marker"
