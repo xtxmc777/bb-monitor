@@ -342,6 +342,138 @@ process_dataset() {
 
 status=0
 
+# PROGRAM_LIFECYCLE_V1
+notify_program_lifecycle_outbox() {
+  local outbox_dir="$STATE/programs/outbox"
+
+  [[ -d "$outbox_dir" ]] || return 0
+
+  local notification
+  local temporary
+  local dedupe_key
+  local title
+  local count
+  local marker
+  local summary
+
+  shopt -s nullglob
+  local notifications=(
+    "$outbox_dir"/*.json
+  )
+  shopt -u nullglob
+
+  for notification in "${notifications[@]}"; do
+    jq -e '
+      .program_notification_version == 1
+      and (.dedupe_key | type == "string" and length == 64)
+      and (.title | type == "string" and length > 0)
+      and (.count | type == "number" and . > 0)
+      and (.lines | type == "array" and length > 0)
+    ' "$notification" >/dev/null
+
+    dedupe_key="$(
+      jq -r '.dedupe_key' "$notification"
+    )"
+    title="$(
+      jq -r '.title' "$notification"
+    )"
+    count="$(
+      jq -r '.count' "$notification"
+    )"
+
+    marker="$STATE/sent/programs-${dedupe_key}.sent"
+
+    if [[ -f "$marker" ]]; then
+      rm -f "$notification"
+      echo "[-] already notified: program lifecycle $dedupe_key"
+      continue
+    fi
+
+    temporary="$(mktemp)"
+    jq -r '.lines[]' "$notification" > "$temporary"
+
+    summary="${title}"$'\n\n'
+    summary+="Count: ${count}"$'\n'
+    summary+="Catalog: public-bugbounty-programs"$'\n'
+    summary+="Status: PENDING VERIFICATION"
+
+    if ! send_inline_list \
+      "$TG_PROGRAMS" \
+      "$summary" \
+      "$temporary"
+    then
+      rm -f "$temporary"
+      return 1
+    fi
+
+    rm -f "$temporary"
+    touch "$marker"
+    rm -f "$notification"
+
+    echo "[+] notified: program lifecycle $title ($count)"
+  done
+}
+
+
+process_program_catalog() {
+  local catalog_url
+  catalog_url="https://raw.githubusercontent.com/projectdiscovery/public-bugbounty-programs/main/dist/data.json"
+
+  local script_dir
+  script_dir="$(
+    cd "$(dirname "${BASH_SOURCE[0]}")"
+    pwd
+  )"
+
+  local programs_state="$STATE/programs"
+  local catalog_file="$programs_state/catalog.new.json"
+  local result_file="$programs_state/last-execution.json"
+
+  install -d -m 0700 "$programs_state"
+  install -d -m 0700 "$STATE/events/pending"
+
+  if ! curl \
+    -sSf \
+    --retry 3 \
+    --retry-delay 2 \
+    --retry-all-errors \
+    --connect-timeout 15 \
+    --max-time 120 \
+    "$catalog_url" \
+    -o "$catalog_file"
+  then
+    echo "[!] fetch failed: program catalog" >&2
+    rm -f "$catalog_file"
+    return 1
+  fi
+
+  if ! python3 \
+    "$script_dir/program_lifecycle.py" \
+    --catalog "$catalog_file" \
+    --state-dir "$programs_state" \
+    --events-dir "$STATE/events/pending" \
+    --detected-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --result-output "$result_file"
+  then
+    rm -f "$catalog_file"
+    return 1
+  fi
+
+  rm -f "$catalog_file"
+
+  echo "[+] programs: added=$(
+    jq -r '.counts.added' "$result_file"
+  ) reopened=$(
+    jq -r '.counts.possible_reopened' "$result_file"
+  ) removed=$(
+    jq -r '.counts.removed' "$result_file"
+  ) changed=$(
+    jq -r '.counts.changed' "$result_file"
+  )"
+
+  notify_program_lifecycle_outbox
+}
+
 process_dataset \
   "assets" \
   "${BASE}/assets.out" \
@@ -355,3 +487,5 @@ process_dataset \
   "wildcards.out" || status=1
 
 exit "$status"
+
+process_program_catalog

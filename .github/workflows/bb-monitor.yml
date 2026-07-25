@@ -35,6 +35,9 @@ jobs:
           if [[ -d state/events ]]; then
             paths+=(state/events/)
           fi
+          if [[ -d state/programs ]]; then
+            paths+=(state/programs/)
+          fi
           git add --all -- "${paths[@]}"
           git diff --staged --quiet || git commit -m "state update $(date -u +%F_%H:%M)"
           git push
