@@ -485,7 +485,7 @@ process_dataset \
   "${BASE}/wildcards.out" \
   "$TG_PROGRAMS" \
   "wildcards.out" || status=1
+process_program_catalog || status=1
+
 
 exit "$status"
-
-process_program_catalog
