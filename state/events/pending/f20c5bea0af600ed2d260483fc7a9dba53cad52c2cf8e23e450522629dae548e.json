@@ -1,0 +1,20 @@
+{
+  "candidate_host": "kinepolis.be",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-27T16:48:59.237814+00:00",
+  "event_id": "f20c5bea0af600ed2d260483fc7a9dba53cad52c2cf8e23e450522629dae548e",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "232707fcfc3708c06c47dbfaaa5880fdc78f1a789c7ca81414b08be498e11c55",
+  "old_sha256": "7271fcc22ed826c5fb973497793e0325ccd330f96812337f14188ca6361eb763",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "kinepolis.be",
+  "public_sources_only": true,
+  "raw_value": "*.kinepolis.be",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
