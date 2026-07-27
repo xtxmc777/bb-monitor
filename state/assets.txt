@@ -1122,7 +1122,6 @@
 *.withairbnb.com
 *.withspotify.com
 *.wlo.link
-*.wolt.com
 *.wooga.com
 *.wordcamp.org
 *.wordpress.net
@@ -2652,8 +2651,6 @@ Windows OS Executable
 Windows OS Executable: Download here https://www.larksuite.com/download
 Windows Personal Backup Clients
 Windows Restore Downloaders
-Wolt Courier Partner
-Wolt Delivery: Food and more
 WooCommerce
 WordPress Core
 WordPress Plugins & Themes
@@ -2851,6 +2848,8 @@ api.custody.coinbase.com
 api.deriv.com
 api.developer.monespacesante.fr
 api.dicey.com
+api.digital.delen.be 
+api.digital.delen.lu 
 api.digitalocean.com
 api.direct.playstation.com
 api.dmp.gouv.fr
@@ -3016,6 +3015,9 @@ app.circle.com
 app.datacamp.com/certification
 app.datacamp.com/groups
 app.datacamp.com/learn
+app.delen.be 
+app.delen.ch 
+app.delen.lu 
 app.demand.cybersource.com
 app.deriv.com
 app.drogas.lt
@@ -3122,6 +3124,8 @@ auth-identity-uat-ping.nba.com
 auth-identity-uat.nba.com
 auth-identity.nba.com
 auth.23andme.com
+auth.digital.delen.be 
+auth.digital.delen.lu 
 auth.dmp.gouv.fr
 auth.magic.link
 auth.monespacesante.fr
@@ -3136,7 +3140,6 @@ auth0.com
 auth0.gocardless.com
 auth0.net
 authentication.clearme.com
-authentication.wolt.com
 authz.workbox.dk
 autocomplete.booking.com
 autodiscover.uzleuven.be
@@ -3168,6 +3171,7 @@ bdese.marionnaud.fr
 bdu-cf.*.aws.indriverapp.com
 be.bpost.mobilecard
 be.bpost.mybpost
+be.delen.digital
 be.nexuzhealth.mobile.cpv
 be.nexuzhealth.mobile.kws
 be.nexuzhealth.mobile.mynexuz
@@ -3820,7 +3824,6 @@ corp-dev.nba.com
 corp.badoo.com
 corp.polymoon.it
 corporate.abercrombie.com
-corporate.wolt.com
 cosmo.fdeb.live.use1a.on.epicgames.com
 courier-cf.*.aws.indriverapp.com
 couriers.indrive.com
@@ -3916,6 +3919,7 @@ defi.ripio.com
 delaware-dev.gleague.nba.com
 delaware-qa.gleague.nba.com
 delaware.gleague.nba.com
+delen/id1064839588
 delivery-webview.indrive.com
 demo.arkoselabs.com
 demo.fareharbor.com
@@ -4001,7 +4005,6 @@ dream-dev.wnba.com
 dream-qa.wnba.com
 dream-qa2.wnba.com
 dream.wnba.com
-drive.wolt.com
 dropbox.com/paper
 dwy.visa.com
 e-Commerce
@@ -7259,10 +7262,14 @@ login-sandbox.nba.com
 login-uat.nba.com
 login.arkane.network
 login.cm.com
+login.delen.be 
+login.delen.ch 
+login.delen.lu 
 login.infomaniak.com
 login.insightly.com
 login.koho.ca
 login.nba.com
+login.oyens.com
 login.playcanvas.com
 login.rei.com
 login.remitly.com
@@ -7421,7 +7428,6 @@ mercantile.wordpress.org
 merch.23andme.com
 merchandise.opera-api.com
 merchant.crypto.com
-merchant.wolt.com
 merchantsignage.visa.com
 merchantsignageap.visa.com
 merchantsignageca.visa.com
@@ -7615,7 +7621,6 @@ openidconnect.net
 opposhop.cn
 oprc.portofantwerpbruges.com
 ops.lime.bike
-ops.wolt.com
 org.hartfordhealthcare.hhc247
 org.malwarebytes.antimalware
 org.piwik.mobile2
@@ -7909,7 +7914,6 @@ reservations.wynnvacations.com
 resmax.hilton.com
 resolve.8x8.com
 resources.krisp.ai
-restaurant-api.wolt.com
 review.tw.coupang.com
 reviewer.pullrequest.com
 rewire.com
@@ -8144,6 +8148,7 @@ stats.gleague.nba.com
 stats.nba.com
 stats.vinci.com
 stats.wnba.com
+status.delen.be 
 status.larksuite.com
 status.uphold.com
 steamcommunity.com
@@ -8171,6 +8176,7 @@ streaming-api.iris.production.forescoutcloud.net
 streaming-gw.iris.production.forescoutcloud.net
 streaming.iris.acceptance.forescoutcloud.net
 streaming.iris.production.forescoutcloud.net
+sts.delen.be 
 sts.uzleuven.be
 studio-api.swapcard.com
 studio.swapcard.com
@@ -8431,7 +8437,6 @@ winkels.torfs.be
 winter.tomorrowland.com
 winterpackages.tomorrowland.com
 wlr-cf.*.aws.indriverapp.com
-wolt.com
 wonderboxapi.com
 wonderboxdev.com
 woocommerce-adapter.judge.me
@@ -8488,6 +8493,8 @@ www.bookingholdings.com
 www.bpost.be
 www.bpost2.be
 www.bumble.com
+www.cadelam.be 
+www.cadelux.lu/en 
 www.cardinalcommerce.com
 www.carrentals.com
 www.cart.starbucks.co.jp/
@@ -8514,6 +8521,8 @@ www.cybersource.com
 www.datacamp.com
 www.datacamp.com/datalab
 www.ddfcontent.com
+www.delen.bank
+www.delen.be/en 
 www.demorgen.be
 www.demorgen.be/abonnementen
 www.digitalocean.com
