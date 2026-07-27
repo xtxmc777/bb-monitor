@@ -1,0 +1,20 @@
+{
+  "candidate_host": "nitropack.io",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-27T18:15:16.058550+00:00",
+  "event_id": "94ed097560b4eaaa73fcad92a2690b52af08d9a0aff9c48f4ca47bf886d09f43",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "50375cd44a4b0fecd4f00e165275d68ae3be0c1eab0f1e62a06541672148d40f",
+  "old_sha256": "232707fcfc3708c06c47dbfaaa5880fdc78f1a789c7ca81414b08be498e11c55",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "nitropack.io",
+  "public_sources_only": true,
+  "raw_value": "*.nitropack.io",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}

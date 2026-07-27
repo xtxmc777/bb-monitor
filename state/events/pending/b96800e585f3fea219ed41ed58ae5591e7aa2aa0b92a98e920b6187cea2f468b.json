@@ -1,0 +1,20 @@
+{
+  "candidate_host": "studiopress.com",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-27T18:15:16.058751+00:00",
+  "event_id": "b96800e585f3fea219ed41ed58ae5591e7aa2aa0b92a98e920b6187cea2f468b",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "50375cd44a4b0fecd4f00e165275d68ae3be0c1eab0f1e62a06541672148d40f",
+  "old_sha256": "232707fcfc3708c06c47dbfaaa5880fdc78f1a789c7ca81414b08be498e11c55",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "studiopress.com",
+  "public_sources_only": true,
+  "raw_value": "*.studiopress.com",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
