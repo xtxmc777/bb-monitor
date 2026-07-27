@@ -1,0 +1,20 @@
+{
+  "candidate_host": "itcapital.io",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-27T08:32:34.876713+00:00",
+  "event_id": "1740f01b49734d942b5fecd8af55d55340d7159b6fd50f4bc1a333e8d706e646",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "eb76fc04f909d917e0de5a7470215f1fba8d0d5588aee25cb1a26042ca2f27c2",
+  "old_sha256": "9f3008cabeb581d606d4c645197e5da506dd36cda018b4e931b6bcea8965dcc7",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "itcapital.io",
+  "public_sources_only": true,
+  "raw_value": "*.itcapital.io",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
