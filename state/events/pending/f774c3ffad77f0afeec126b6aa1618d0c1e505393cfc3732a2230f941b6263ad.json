@@ -1,0 +1,20 @@
+{
+  "candidate_host": "mijnwater-link.be",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-28T11:35:50.691150+00:00",
+  "event_id": "f774c3ffad77f0afeec126b6aa1618d0c1e505393cfc3732a2230f941b6263ad",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "f0981c244094f84af9f6a3bb27642d7f4ae02456ab280d25c6f602996c7b56b0",
+  "old_sha256": "50375cd44a4b0fecd4f00e165275d68ae3be0c1eab0f1e62a06541672148d40f",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "mijnwater-link.be",
+  "public_sources_only": true,
+  "raw_value": "*.mijnwater-link.be",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}

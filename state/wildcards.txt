@@ -250,7 +250,6 @@
 *.dancecentral.com
 *.das.eu
 *.dash.ai
-*.datacamp.com
 *.dcfgateway.marriott.com
 *.de.jbl.com
 *.deliciousbrains.com
@@ -641,6 +640,7 @@
 *.miinsurtech.com
 *.miinsurtech.net
 *.mijiayoupin.com
+*.mijnwater-link.be
 *.mioffice.cn
 *.mios.cn
 *.miot-spec.org
