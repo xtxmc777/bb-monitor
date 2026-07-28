@@ -1,0 +1,20 @@
+{
+  "candidate_host": "datacamp.com",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-28T09:28:34.854360+00:00",
+  "event_id": "7644f4dbe82d29aa2580d1fcc3cdac42a8ebfa379ea4f80f3770e1b0095ecd42",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "50375cd44a4b0fecd4f00e165275d68ae3be0c1eab0f1e62a06541672148d40f",
+  "old_sha256": "1452a9d8042f20fa39aea38258b3ffa03e4d2802fe92151ca025177a53cac6f3",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "datacamp.com",
+  "public_sources_only": true,
+  "raw_value": "*.datacamp.com",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
