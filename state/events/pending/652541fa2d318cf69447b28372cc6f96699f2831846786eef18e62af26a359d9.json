@@ -1,0 +1,20 @@
+{
+  "candidate_host": "truelayer.com",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-28T22:29:55.258128+00:00",
+  "event_id": "652541fa2d318cf69447b28372cc6f96699f2831846786eef18e62af26a359d9",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "bff5a38ee67fc483778af5ee96c6f44200fbce769a279d7af4470b1a54ea8c2e",
+  "old_sha256": "f8912b5a3ba53df3f691a24fad3c9ee0ee4ed19b8dcfa4ae8bfe6ec3e4cb3350",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "truelayer.com",
+  "public_sources_only": true,
+  "raw_value": "*.truelayer.com",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
