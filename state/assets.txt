@@ -1071,7 +1071,6 @@
 *.vacationhomerentals.com
 *.varonis.com
 *.varonis.io
-*.varonis.net
 *.vayama.com
 *.venmo.com
 *.vennhypotheken.nl
@@ -2797,6 +2796,10 @@ air.com.playtika.slotomania
 airFiber
 airMAX
 airtable.js SDK (https://www.npmjs.com/package/airtable)
+ak-static-dev.nba.com
+ak-static.cms-dev.nba.com
+ak-static.cms-qa.nba.com
+ak-static.cms.nba.com
 akismet.com
 alert.logitech.com
 alerts.ninjakiwi.com
@@ -2806,6 +2809,7 @@ alfred-uat-31.nonprod.syfe.com
 alfred.syfe.com
 alipayhk.com
 all-inclusive.marriott.com
+allstar-dev.nba.com
 alternativa.film
 am.developer.monespacesante.fr
 am.editeur.preprod.monespacesante.fr
@@ -2815,6 +2819,9 @@ amazon.com/hz/mycd/*
 amazon.speech.sim
 amazonpayinsurance.in
 amd.digitalocean.com
+amp-nba-dev.nba.com
+amp-nba-stage.nba.com
+amp-nba.nba.com
 amp.reddit.com
 analytics-*.8x8.com
 analytics.krisp.ai
@@ -2954,6 +2961,7 @@ api.monespacesante.fr
 api.moonpay.com
 api.moonx-dev.com
 api.mtls.truelayer[-sandbox].com
+api.nba.com
 api.neon.opera.com/neon/pub
 api.neon.opera.com/neon/store
 api.neon.opera.com/pub
@@ -3214,6 +3222,7 @@ be.nexuzhealth.mobile.cpv
 be.nexuzhealth.mobile.kws
 be.nexuzhealth.mobile.mynexuz
 beacon.netflix.com
+bealegend.nba.com
 beamitmobile.com
 beauty-and-you.iciparisxl.nl
 belgium.tomorrowland.com
@@ -3352,6 +3361,8 @@ careers.marriott.com
 careers.remitly.com
 careers.tiktok.com
 careers.ui.com
+cares-dev.nba.com
+cares-qa.nba.com
 cares.nba.com
 cargo.indrive.com
 cars.booking.com
@@ -3368,10 +3379,18 @@ castor.vinci.com
 ccardseu1.badoo.com
 ccardsus1.badoo.com
 ccloud.yoti.com
+cdn-bal-dev.nba.com
+cdn-bal-qa.nba.com
+cdn-bal-uat.nba.com
 cdn-bal.nba.com
+cdn-dev.nba.com
+cdn-gleague-dev.nba.com
+cdn-gleague-qa.nba.com
 cdn-gleague.nba.com
 cdn-qa.gleague.nba.com
+cdn-qa.nba.com
 cdn-uat.gleague.nba.com
+cdn-uat.nba.com
 cdn.arkoselabs.com
 cdn.gleague.nba.com
 cdn.moderntreasury.com
@@ -3401,6 +3420,7 @@ cht-gw-cf.*.aws.indriverapp.com
 ci-propertyconversionportal.marriott.com
 circle.logi.com
 circolocorecords.com/
+cl-qa.nba.com
 cl.nba.com
 classroom.github.com
 claude.ai
@@ -3431,6 +3451,8 @@ co-in-gw-cf.*.aws.indriverapp.com
 co.mona.android
 co.uk.getmondo
 coaching.supernovas.indrive.com
+coalition-dev.nba.com
+coalition-qa.nba.com
 coban.pixiv.net
 coda.grammarly.com
 coda.io
@@ -3810,6 +3832,7 @@ community.ui.com
 community.watsons.co.th
 community.watsons.com.my
 community.watsons.com.ph
+communityassist.nba.com
 company.thebrowser.arc
 compass.fareharbor.com
 compete.playstation.com
@@ -3833,6 +3856,9 @@ console.circle.com
 console.ort-one-pingone.com
 console.tink.com
 console.truelayer[-sandbox].com
+contact-dev.nba.com
+contact-qa.nba.com
+contact.nba.com
 contacts.infomaniak.com
 content-api-dev.nba.com
 content-api-nextgen-dev.nba.com
@@ -3864,14 +3890,17 @@ core-api-uc.nba.com
 core-api.deriv.com
 core-api.nba.com
 core.yoti.com
+coronavirus.nba.com
 corp-dev.nba.com
 corp.badoo.com
+corp.nba.com
 corp.polymoon.it
 corporate.abercrombie.com
 corporate.wolt.com
 cosmo.fdeb.live.use1a.on.epicgames.com
 courier-cf.*.aws.indriverapp.com
 couriers.indrive.com
+courtside.nba.com
 cover-photos-us-east-2.hackerone-user-content.com
 cover-photos.hackerone-user-content.com
 cpanel.hostinger.com
@@ -3979,8 +4008,10 @@ detroit-dev.gleague.nba.com
 detroit-qa.gleague.nba.com
 detroit.gleague.nba.com
 dev-training.ui.com
+dev.courtside.nba.com
 dev.epicgames.com/*
 dev.stats.gleague.nba.com
+dev.stats.nba.com
 devcenter.unico.io
 developer*.earlywarning.com
 developer-api.crypto.com
@@ -4046,6 +4077,7 @@ doordash.DoorDashConsumer
 doppler
 doppler.team
 download.krisp.ai
+downloads.varonis.com
 dr-cf.*.aws.indriverapp.com
 dream-dev.wnba.com
 dream-qa.wnba.com
@@ -4060,6 +4092,8 @@ eaccountingprinting.stage.vismaonline.com
 eassessment.monash.edu
 ebctest.cybersource.com
 ebsext.oft.hyatt.com
+ec2-redirect-west.nba.com
+ec2redirect-west.nba.com
 ecom-data.kruidvat.be
 ecom-data.kruidvat.nl
 ecom-data.marionnaud.at
@@ -4178,6 +4212,7 @@ fire.wnba.com
 firefly.adobe.com
 firefox-ci-tc.services.mozilla.com
 firefox.settings.services.mozilla.com
+fit.nba.com
 fizzy.do
 flights.booking.com
 flourish-user-preview.com
@@ -4227,6 +4262,7 @@ gateway.geneva-staging.com
 gateway.reddit.com
 gateway.skyscanner.net/*
 gateway.superhuman.com
+gatoradetrainingcenter.nba.com
 gc.watsons.com.tr
 geneva-staging.chat
 geofilters.snapchat.com
@@ -4251,6 +4287,11 @@ gleague-qa.nba.com
 gleague.nba.com
 global-api.citymapper.com
 globaljourney.tomorrowland.com
+globalstores-dev.nba.com
+globalstores-qa.nba.com
+globalstores.nba.com
+gms-prev.nba.com
+gms.nba.com
 gnip.com
 gnocchi-www.buffalo-ggn.net
 go-cms.tw.coupang.com
@@ -4270,6 +4311,7 @@ grandrapids-qa.gleague.nba.com
 grandrapids.gleague.nba.com
 graphql.sandbox.topperpay.com/graphql
 gravatar.com
+green.nba.com
 greensboro-dev.gleague.nba.com
 greensboro-qa.gleague.nba.com
 greensboro.gleague.nba.com
@@ -4324,6 +4366,7 @@ home.deriv.com
 home.privy.io
 homeloans.wellsfargo.com
 homes-and-villas.marriott.com
+hoopsfortroops.nba.com
 horizonchase.com
 horizonchase.com.br
 horizonchaseturbo.com
@@ -7119,6 +7162,7 @@ hubacc.vznkul.be/*
 hubacc.vznkul.be/services/acceptance/interhub/InterHubService
 hubacc.vznkul.be/services/acceptance/intrahub/IntraHubService
 hubspot.net
+huddle.nba.com
 humo.be/registreren
 hungrygowhere.com
 hyatt.com
@@ -7189,6 +7233,10 @@ in.amazon.mShop.android.business.shopping
 in.amazon.mShop.android.shopping
 inc-cf.*.aws.indriverapp.com
 inc-gw-cf.*.aws.indriverapp.com
+inclusion-dev.nba.com
+inclusion-qa.nba.com
+inclusion.nba.com
+indiaontrack.nba.com
 indicative-pricing.taxi.booking.com
 indrive.com
 inference.do-ai.run
@@ -7307,6 +7355,7 @@ liberty-dev.wnba.com
 liberty-qa.wnba.com
 liberty-qa2.wnba.com
 liberty.wnba.com
+licensemgmt.varonis.com
 lightsparkdev/flutter-sdk
 lightsparkdev/js-sdk
 lightsparkdev/kotlin-sdk
@@ -7591,6 +7640,7 @@ my.snapchat.com
 my.swiftfinancial.com
 my.tomorrowland.com
 my.tw.coupang.com
+my.varonis.com
 my.visa.fr
 myaccount-cn.payoneer.com
 myaccount-hardening.dynatracelabs.com
@@ -7895,6 +7945,7 @@ pubtools.private.8x8cloud.net
 push.opera.com
 pwapi.ex2b.com
 py.pl
+qa.stats.nba.com
 qm-*.8x8.com
 quickstamp-gb.bpost.be
 qwantjunior.com
@@ -8226,7 +8277,9 @@ staking.polygon.technology
 static*.twilio.com
 stats-dev.gleague.nba.com
 stats-dev.nba.com
+stats-qa.gleague.nba.com
 stats-qa.nba.com
+stats-querytoolapi.nba.com
 stats-trafficcop-aws-dev.nba.com
 stats-trafficcop-aws-prod-east1.nba.com
 stats-trafficcop-aws-prod.nba.com
@@ -8299,6 +8352,7 @@ support.monespacesante.fr
 support.mozilla.org
 support.rockstargames.com
 support.steampowered.com
+support.varonis.com
 supportal.netlify.app
 sur-cf.*.aws.indriverapp.com
 survey.vinci.com
@@ -8312,6 +8366,8 @@ swisstransfer.infomaniak.com
 sync.infomaniak.com
 sync.logitech.com
 sync.services.mozilla.com
+syndication-dev.nba.com
+syndication-qa.nba.com
 syndication.nba.com
 syndication.tw.coupang.com
 t.co
@@ -8344,6 +8400,7 @@ testapp.redoxengine.com
 testbank.xs2a.com
 teststs.uzleuven.be
 thebrowser.company
+thisiswhyweplay.nba.com
 tiktok.com
 tlbe.prod.tomorrowland.com
 tlbr.prod.tomorrowland.com
@@ -8430,6 +8487,9 @@ via.rider
 video-agent.8x8.com
 videogp-api.superdrug.com
 videogp.superdrug.com
+videorulebook-dev.nba.com
+videorulebook-qa.nba.com
+videorulebook.nba.com
 vikingco.be
 vikingdeals.be
 vikinglab.be
@@ -8452,6 +8512,7 @@ vm-gw-cf.*.aws.indriverapp.com
 voapi.8x8.com
 vod.infomaniak.com
 voi.com
+voices.nba.com
 volans.tech
 vote.nba.com
 vpn.mobilevikings.be
@@ -8478,6 +8539,8 @@ wallettg.com
 wallettg.net
 was-gw-cf.*.aws.indriverapp.com
 wasapi.watsons.com.tr
+watch-ng.nba.com
+watch.global.nba.com
 watchdocs.indriverapp.com
 wd2*.indriverapp.com
 weather.opera-api.com
@@ -8554,9 +8617,11 @@ wpscan.com
 ws.blockchain.info
 ws.sorare.com
 wss://socket.bitpanda.com
+www-all.nba.com
 www-dev.nba.com
 www-dev.wnba.com
 www-ng.nba.com
+www-prod.nba.com
 www-qa.nba.com
 www-qa.wnba.com
 www-uat.nba.com

@@ -1055,7 +1055,6 @@
 *.vacationhomerentals.com
 *.varonis.com
 *.varonis.io
-*.varonis.net
 *.vayama.com
 *.venmo.com
 *.vennhypotheken.nl
