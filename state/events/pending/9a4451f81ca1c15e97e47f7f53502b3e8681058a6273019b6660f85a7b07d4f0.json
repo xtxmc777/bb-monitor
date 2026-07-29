@@ -1,0 +1,20 @@
+{
+  "candidate_host": "landmarkcinemas.com",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-29T11:50:16.417542+00:00",
+  "event_id": "9a4451f81ca1c15e97e47f7f53502b3e8681058a6273019b6660f85a7b07d4f0",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "74fca74ba7894cd1d711a1d5e9c43d619de9fb9761dccd2f0d60333ee69b9121",
+  "old_sha256": "bff5a38ee67fc483778af5ee96c6f44200fbce769a279d7af4470b1a54ea8c2e",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "landmarkcinemas.com",
+  "public_sources_only": true,
+  "raw_value": "*.landmarkcinemas.com",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
