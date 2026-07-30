@@ -1,0 +1,20 @@
+{
+  "candidate_host": "kinepolis.ch",
+  "dataset": "wildcards.out",
+  "detected_at": "2026-07-30T16:55:17.067799+00:00",
+  "event_id": "a3c5bc0e992d63569258fcd1c215a235ed5e1fad3f3ad1b8971a0002f33efe48",
+  "event_type": "source_onboarding_candidate",
+  "event_version": 1,
+  "new_sha256": "fd380f5c46f7182bfab6253b02fac1c39937926215afce0832db23aa7bba82a7",
+  "old_sha256": "36ae708c799a72975b78e7ede1dfa6edffd5a444e6a5f3619ea3861f53025c36",
+  "producer": {
+    "component": "bb-monitor",
+    "source": "projectdiscovery/public-bugbounty-programs"
+  },
+  "program_hint": "kinepolis.ch",
+  "public_sources_only": true,
+  "raw_value": "*.kinepolis.ch",
+  "source_discovery_allowed": true,
+  "status": "pending",
+  "trigger": "new_wildcard"
+}
