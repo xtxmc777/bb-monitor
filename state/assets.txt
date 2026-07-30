@@ -4547,8 +4547,6 @@ https://api.cloudinary.com
 https://api.cyberghostvpn.com
 https://api.datadome.co
 https://api.dbs.kape.com
-https://api.dextf.com/dcd/
-https://api.dextf.com/dd/
 https://api.dts.kape.com
 https://api.enc.kape.com
 https://api.expressvpn.com
@@ -4896,7 +4894,6 @@ https://bridge.ripio.com/
 https://browser-notifications.opera.com
 https://bug-bounty-api.k8s.tools-001.d-use-1.braze-dev.com/
 https://bug-bounty-dashboard.k8s.tools-001.d-use-1.braze-dev.com/
-https://bug-bounty-dfm.mementoblockchain.com/
 https://bug-bounty-rest.k8s.tools-001.d-use-1.braze-dev.com/
 https://bugcrowd-pam-###-admin.oktapreview.com
 https://bugcrowd-pam-###.at.oktapreview.com
