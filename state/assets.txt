@@ -2551,11 +2551,14 @@ Tidal Client for iOS
 Tidal Official Clients (e.g. Sonos integration, Tesla integration, etc.)
 Tier 1
 Tier 1 Assets
+Tier 1 OSS
 Tier 1 Studios
 Tier 2
 Tier 2 Assets
+Tier 2 OSS
 Tier 3
 Tier 3 Assets
+Tier 3 OSS
 Tier A - Core Assets
 Tier B - Non Core (Bitmoji, Playcanvas)
 Tor
