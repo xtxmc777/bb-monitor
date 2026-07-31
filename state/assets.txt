@@ -4557,6 +4557,7 @@ https://api.int.ibops.net/customer-loyalty-service
 https://api.intercom.com
 https://api.justeat-int.com
 https://api.jwks.kape.com
+https://api.mafshoppingmalls.com
 https://api.mafshoppingmalls.com/
 https://api.moneyboxapp.com
 https://api.myntra.com
@@ -4738,6 +4739,7 @@ https://apps.apple.com/us/app/acorns-invest-spare-change/id883324671
 https://apps.apple.com/us/app/asana-mobile/id489969512
 https://apps.apple.com/us/app/auth0-guardian/id1093447833
 https://apps.apple.com/us/app/backblaze/id628638330
+https://apps.apple.com/us/app/belong-by-maf/id6443736108
 https://apps.apple.com/us/app/bitgo-verify/id1608937235
 https://apps.apple.com/us/app/bitgo/id6739010408
 https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172
@@ -4828,6 +4830,7 @@ https://assets.platform.blis.com
 https://assets.platform.development.blis.com
 https://assets.platform.rc.blis.com
 https://associatie.kuleuven.be/inschrijvingen/oli_login_50000050
+https://atjunction.com/
 https://atlantis-ext.myopenpass.com
 https://audience-builder.vistarmedia.com
 https://audiencelogos.blis.com
@@ -4938,6 +4941,7 @@ https://chrome.google.com/webstore/detail/pinterest-save-button/gpdjojdkbbmdfjfa
 https://chromewebstore.google.com/detail/indeed-recruiter-extensio/kiodpphbmnmcmnfgpnmkkhmkllnlflef
 https://chromewebstore.google.com/detail/loom-%E2%80%93-screen-recorder-sc/liecbddmkiiihnedobmlmillhodjkdmb?hl=en-US&pli=1
 https://cicforms.mioot.com/
+https://citycentredeira.com/
 https://clearpay.co.uk
 https://clearpay.com
 https://clickhou.se/bugcrowd
@@ -5577,6 +5581,7 @@ https://luna.amazon.com/*
 https://m.blablacar.(fr|de|co.uk|in|es|mx|be|hr|hu|it|nl|pl|com.br|pt|ro|ru|com|tr|com.ua)
 https://m.thefork.com
 https://maf-holding-prod.apigee.net
+https://maf-properties-prod.apigee.net
 https://makeshift.film
 https://manage.cic-bug-bounty.auth0app.com/
 https://manage.statuspage.io
@@ -6395,6 +6400,7 @@ https://play.google.com/store/apps/details?id=com.lastpass.lpandroid
 https://play.google.com/store/apps/details?id=com.lime.supply&hl=en_US
 https://play.google.com/store/apps/details?id=com.limebike
 https://play.google.com/store/apps/details?id=com.loom.android&hl=en_US&pli=1
+https://play.google.com/store/apps/details?id=com.maf.communities&hl=en-US
 https://play.google.com/store/apps/details?id=com.maf.share&hl=en_US&gl=US
 https://play.google.com/store/apps/details?id=com.maf.thatandroid
 https://play.google.com/store/apps/details?id=com.media.markt
@@ -6618,6 +6624,8 @@ https://sitepixel.blis.com
 https://sitepixel.dev.blis.com
 https://skippayments.com
 https://skipthedishes.com
+https://smbu-api.maf.ae/
+https://smbu.mafcms.com/Sitefinity/adminapp/renderer/dashboard
 https://snapnames.com/
 https://snc.underarmour.com/
 https://snctest-c.underarmour.com/
@@ -6682,6 +6690,7 @@ https://telemetry-polling.devicecloud.acceptance.forescoutcloud.net/v1/package
 https://telemetry-polling.devicecloud.acceptance.forescoutcloud.net/v1/polling
 https://telemetry-polling.devicecloud.acceptance.forescoutcloud.net/v1/upload
 https://teleoptiprd.otto.de
+https://temp-target.ai
 https://tempus-ex.com
 https://tess.service-now.com
 https://testflight.apple.com/join/FuaxsScP
@@ -6699,6 +6708,7 @@ https://tools-api.cryptocompare.com/
 https://torquemag.io
 https://tr.ee
 https://tracker.bugcrowd.com
+https://tracker.eu.bugcrowd.net/
 https://tracker.naspers.com/
 https://transcodes-cdn.vistarmedia.com
 https://transfer.underarmour.com/
@@ -6869,6 +6879,7 @@ https://www.cfr.org/
 https://www.chime.com
 https://www.chipotle.co.uk
 https://www.chipotle.com
+https://www.citycentremalls.com/en
 https://www.classdojo.com
 https://www.classeaudio.com
 https://www.cloudvector.com/
@@ -6910,6 +6921,7 @@ https://www.galabingo.com
 https://www.galacasino.com
 https://www.gamemaker.io
 https://www.gesundheitsverbund.at
+https://www.ghafwoods.com/en
 https://www.glassdoor.com/*
 https://www.glassdoor.com/Compare/*
 https://www.glassdoor.com/Job/*
@@ -6969,6 +6981,7 @@ https://www.lululemon.es/
 https://www.lululemon.fr/
 https://www.lululemon.me
 https://www.magicplanetmena.com/
+https://www.majidalfuttaimproperties.com/en
 https://www.malloftheemirates.com
 https://www.mankind.co.uk/
 https://www.marantz.com
@@ -6994,6 +7007,7 @@ https://www.microsoft.com/en-us/p/keeperchat/9pdqtcpn4kxn#activetab=pivot:overvi
 https://www.minhaconta.zoop.com.br
 https://www.monash.edu
 https://www.monashprofessional.edu.au/
+https://www.mycitycentrealbarsha.com/
 https://www.myntra.com
 https://www.myprotein.com/
 https://www.myvitamins.com/
@@ -7087,6 +7101,7 @@ https://www.thetradedesk.com
 https://www.thousandeyes.com/
 https://www.thuisbezorgd.nl/
 https://www.tickets.mgm.mo/
+https://www.tilalalghaf.com/en
 https://www.toursgds.com/
 https://www.toursgds.com/SupplierService?wsdl
 https://www.toursgds.com/ToursGdsService?wsdl
